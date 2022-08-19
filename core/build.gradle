@@ -38,9 +38,11 @@ dependencies {
     api "androidx.compose.ui:ui:$compose_version"
     api 'androidx.compose.material3:material3:1.0.0-alpha16'
     api "androidx.compose.animation:animation-graphics:$compose_version"
-    api "androidx.compose.material:material:$compose_version"
     api "androidx.compose.material:material-icons-extended:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
+
+    //navigation
+    api 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
