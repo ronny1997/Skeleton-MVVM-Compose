@@ -1,31 +1,32 @@
 package com.patrisoft.ui.home
 
 import com.patrisoft.core.base.BaseViewModel
+import com.patrisoft.core.domain.UseCase
 import com.patrisoft.core.domain.fold
-import com.patrisoft.domain.usecase.GetTextUseCase
+import com.patrisoft.domain.usecase.GetDataReeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    val getText: GetTextUseCase
+    private val getData: GetDataReeUseCase
 ) : BaseViewModel<HomeViewState, HomeViewEvent>(HomeViewState.ShowProgress(true)) {
     init {
-        getData(false)
+        getData()
     }
 
     override fun onEvent(event: HomeViewEvent) {
         when (event) {
-            is HomeViewEvent.RefreshData -> getData(event.error)
+            is HomeViewEvent.RefreshData -> getData()
         }
     }
 
-    private fun getData(error: Boolean) {
+    private fun getData() {
         launch {
             updateViewState(HomeViewState.ShowProgress(true))
-            getText(error).fold(
+            getData(UseCase.None).fold(
                 onSuccess = {
-                    updateViewState(HomeViewState.ShowData(it))
+                    updateViewState(HomeViewState.ShowData(it.toString()))
                 },
                 onFailure = {
                     //updateViewState(HomeViewState(false, "", it.message ?: ""))

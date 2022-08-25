@@ -44,7 +44,7 @@ fun HomeView(
     Column() {
         Text(text = text)
         Button(onClick = {
-            viewModel.onEvent(HomeViewEvent.RefreshData(false))
+            viewModel.onEvent(HomeViewEvent.RefreshData())
         }) {
             Text(text = "Refresh Data")
         }

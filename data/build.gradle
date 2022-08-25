@@ -1,8 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
 }
 
 android {
@@ -28,6 +27,10 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':domain')
 
-    implementation "com.google.dagger:hilt-android:${hilt_version}"
-    kapt "com.google.dagger:hilt-android-compiler:${hilt_version}"
+    //test
+    implementation "junit:junit:4.13.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
+    implementation "app.cash.turbine:turbine:0.7.0"
+    implementation "io.mockk:mockk:1.12.4"
+    implementation "io.kotest:kotest-assertions-core:5.1.0"
 }
