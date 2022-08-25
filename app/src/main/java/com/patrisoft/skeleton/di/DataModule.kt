@@ -1,8 +1,9 @@
 package com.patrisoft.skeleton.di
 
-import com.patrisoft.data.remote.datasource.api.RepositoryApi
-import com.patrisoft.data.remote.repository.TestRepositoryImpl
-import com.patrisoft.domain.repository.TestRepository
+import com.patrisoft.core.data.KtorApiClient
+import com.patrisoft.data.remote.datasource.api.ReeApi
+import com.patrisoft.data.remote.repository.ReeRepositoryImpl
+import com.patrisoft.domain.repository.ReeRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,14 +16,14 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun providerRepository(rickAndMortyApi: RepositoryApi): TestRepository =
-        TestRepositoryImpl(rickAndMortyApi)
+    fun providerRepository(reeApi: ReeApi): ReeRepository =
+        ReeRepositoryImpl(reeApi)
 
 
     @Provides
     @Singleton
-    fun providerApi(): RepositoryApi =
-        RepositoryApi()
+    fun providerApi(ktorApiClient: KtorApiClient): ReeApi =
+        ReeApi(ktorApiClient)
 
 
 }
