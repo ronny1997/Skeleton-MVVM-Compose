@@ -36,11 +36,13 @@ dependencies {
     api 'androidx.activity:activity-compose:1.5.1'
     api 'androidx.core:core-ktx:1.8.0'
     api "androidx.compose.ui:ui:$compose_version"
-    api 'androidx.compose.material3:material3:1.0.0-alpha16'
+    //api 'androidx.compose.material3:material3:1.0.0-beta01'
+    api "androidx.compose.material:material:$compose_version"
     api "androidx.compose.animation:animation-graphics:$compose_version"
     api "androidx.compose.material:material-icons-extended:$compose_version"
     api "androidx.compose.ui:ui-tooling-preview:$compose_version"
     api  'com.google.code.gson:gson:2.9.1'
+    api "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
 
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
@@ -70,6 +72,9 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    debugApi "androidx.customview:customview:1.2.0-alpha01"
+    debugApi "androidx.customview:customview-poolingcontainer:1.0.0-alpha01"
 
 
 

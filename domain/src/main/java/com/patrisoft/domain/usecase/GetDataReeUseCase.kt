@@ -7,8 +7,11 @@ import javax.inject.Inject
 
 class GetDataReeUseCase @Inject constructor(
     private val repository: ReeRepository
-) : UseCase<EnergyPriceDto, UseCase.None>() {
-    override suspend fun run(params: None): EnergyPriceDto {
-        return repository.getData()
+) : UseCase<EnergyPriceDto, GetDataReeUseCase.ParamsGetData>() {
+    override suspend fun run(params: ParamsGetData): EnergyPriceDto {
+        return repository.getData(params)
     }
+    data class ParamsGetData(
+    val start:String,
+    val end:String)
 }

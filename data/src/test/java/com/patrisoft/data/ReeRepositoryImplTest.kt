@@ -28,7 +28,7 @@ class ReeRepositoryImplTest : TestUtils() {
         val start = dateNowStart()
         val end = dateNowEnd()
         coEvery { api.getData(start, end)} returns buildDataRee()
-        val data = repository.getData()
+        val data = repository.getData(params)
 
         //Data
         val dataResponse = data.data
@@ -43,9 +43,9 @@ class ReeRepositoryImplTest : TestUtils() {
         attributes.lastUpdate.toString() shouldBe "2022-08-22T20:17:29"
         attributes.color shouldBe "#ffcf09"
         attributes.title shouldBe "PVPC (€/MWh)"
-        attributes.minimum shouldBe 450.71
-        attributes.medium shouldBe 462.91
-        attributes.maximum shouldBe 471.28
+        attributes.minimum shouldBe 0.45071
+        attributes.medium shouldBe 0.4629
+        attributes.maximum shouldBe 0.47128
         val hourEnergyPriceDtoOne = attributes.values[0]
         val hourEnergyPriceDtoTwo = attributes.values[1]
         val hourEnergyPriceDtoThree = attributes.values[2]

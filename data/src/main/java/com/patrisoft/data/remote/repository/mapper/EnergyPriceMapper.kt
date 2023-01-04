@@ -1,12 +1,11 @@
 package com.patrisoft.data.remote.repository.mapper
 
+import com.patrisoft.core.utils.fiveDecimalUtils
 import com.patrisoft.data.remote.datasource.api.model.*
 import com.patrisoft.domain.model.*
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
-import java.math.RoundingMode
-import java.text.DecimalFormat
 import java.util.*
 
 
@@ -75,29 +74,22 @@ fun HourEnergyPrice.actualHour(): Boolean  {
 
 fun HourEnergyPrice.valueMwhToKwh(): Double {
     val kwh = value / 1000
-    val df = DecimalFormat("#.#####")
-    df.roundingMode = RoundingMode.CEILING
-
-    return df.format(kwh).replace(",", ".").toDouble()
+    return kwh.fiveDecimalUtils()
 
 }
 
 fun Attributes.min(): Double {
-    return values.minOfOrNull { it.value } ?: 0.0
+    return values.minOfOrNull { (it.value/1000).fiveDecimalUtils() } ?: 0.0
 }
 
 fun Attributes.average(): Double {
     val userNumbers = mutableListOf<Double>()
-    userNumbers.addAll(values.map { it.value })
-
-    val df = DecimalFormat("#.##")
-    df.roundingMode = RoundingMode.CEILING
-
-    return df.format(userNumbers.average()).replace(",", ".").toDouble()
+    userNumbers.addAll(values.map { (it.value/1000) })
+    return userNumbers.average().fiveDecimalUtils()
 }
 
 fun Attributes.max(): Double {
-    return values.maxOfOrNull { it.value } ?: 0.0
+    return values.maxOfOrNull { (it.value/1000).fiveDecimalUtils() } ?: 0.0
 }
 
 const val HOUR_0 = 0
@@ -126,6 +118,6 @@ const val HOUR_22 = 22
 const val HOUR_23 = 23
 
 
-const val COLOR_RED = "#f23b25"
-const val COLOR_GREEN = "#0faf0f"
-const val COLOR_ORANGE = "#f4a420"
+const val COLOR_RED = "#8Cf23b25"
+const val COLOR_GREEN = "#8C0faf0f"
+const val COLOR_ORANGE = "#8Cf4a420"
